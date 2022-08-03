@@ -18,7 +18,7 @@ function displayProdAndSum(x, y) {
 }
 displayProdAndSum(2, 3)
 
-//cu return
+//d. Scrie o functie care sa afiseze toate numerele impare pana cand intalneste primul numar divizibil cu 9, din intervalul x, y. Cand acest numar va fi gasit, va fi returnat. Daca nu se gaseste un numar divizibil cu 9 se returneaza 0.
 function displayImparity(x, y) {
   console.log('Numerele impare sunt: ')
   for (let i = x; i <= y; i++) {
@@ -30,13 +30,14 @@ function displayImparity(x, y) {
   }
   return 0;
 }
-console.log(displayImparity(10, 28))
+console.log(displayImparity(10, 15))
 
 // e.Scrie o functie care primeste ca parametrii 2 numere a si b si returneaza rezultatul ridicarii lui a la puterea b. Calculul pentru a la puterea b ( ab = a*a*....*a (se inmulteste a cu el insusi de b ori)
 function getExponentNumber(a, b) {
-  return Math.pow(a, b);
+  return a ** b;
+  //return Math.pow(a, b); - doar o alta metoda de a ridica la putere
 }
-console.log(getExponentNumber(3, 2))
+console.log("Numarul rezultat prin ridicarea la putere este ", getExponentNumber(2, 4))
 
 // f. Scrie o functie care ca returneaza factorialul unui numar. Calcul factorial (p! = 1*2*3*...*p (se inmultesc numerele de la 1 pana la p))
 function computeFactorial(x) {
@@ -44,7 +45,7 @@ function computeFactorial(x) {
   for (let i = 1; i <= x; i++) {
     fact = fact * i;
   }
-  return fact;
+  return;
 }
 console.log("Factorialul numarului este ", computeFactorial(4))
 
@@ -110,15 +111,17 @@ getFirstFibonacciNumberss(6);
 
 // j.Scrie o functie care verifica daca un numar introdus de la tastatura este numar prim (adica daca se imparte exact doar la 1 si la el insusi) (returneaza un boolean)
 function isPrime(num) {
-  if (num < 2) return false;
-  for (var i = 2; i < num; i++) {
+  if (num < 2) {
+    return false;
+  }
+  for (let i = 2; i < num; i++) {
     if (num % i == 0)
       return false;
   }
   return true;
 }
+console.log("Numarul este prim: ", isPrime(1))
 console.log("Numarul este prim: ", isPrime(37))
-console.log("Numarul este prim: ", isPrime(35))
 
 // k. Scrie o functie care returneaza true daca intervalul x,y contine un numar care este divizibil si cu 3 si cu 4, altfel returneaza false
 function displayDivisibleNumb(x, y) {
@@ -147,7 +150,7 @@ console.log(computeMean(13))
 
 // m. Scrie o functie care afiseaza fiecare numar ridicat la puterea a 3-a, din intervalul x,y (a3 = a*a*a)
 function displayExponentsOf3(x, y) {
-  console.log("Numerele exponente lui 3 sunt: ")
+  console.log("Numerele la puterea a 3-a sunt: ")
   let exponent = 3;
   for (let i = x; i <= y; i++) {
     console.log(i ** exponent);
@@ -156,18 +159,18 @@ function displayExponentsOf3(x, y) {
 }
 displayExponentsOf3(2, 7);
 
-// n. Scri o functie care afiseaza produsul dintre fiecare 2 numere consecutive din intervalul x,y
+// n. Scrie o functie care afiseaza produsul dintre fiecare 2 numere consecutive din intervalul x,y
 // Exemplu: input: (2,6) => 2*3, 4*5, 6 =>6, 20, 6
 // Exemplu: input (2,7) => 2*3, 4*5, 6*7 => 6, 20, 42
 function computeSumOfConsecutiveNumbers(x, y) {
-  console.log("Suma a doua numere consecutive din interval este: ")
-  for (let i = x; i <= y; i++) {
-    console.log(i + (i + 1));
+  console.log("Produsul a doua numere consecutive din interval este: ")
+  for (let i = x; i < y; i++) {
+    console.log(i * (i + 1));
   }
 }
 computeSumOfConsecutiveNumbers(2, 5)
 
-// o. Scri o functie care primeste ca parametru n, nr de randuri si afiseaza pe n randuri acest pattern de stelute:
+// o. Scrie o functie care primeste ca parametru n, nr de randuri si afiseaza pe n randuri acest pattern de stelute:
 // Pt n =4:
 // *
 // **
@@ -218,21 +221,23 @@ function displayNumPrime(x, y) {
 displayNumPrime(4, 31);
 
 // r. Scrie o functie care returneaza cel mai mare numar prim din intervalul [x,y]
-// function displayMaxPrimeNumber(x, y) {
-//   for (let i = x; i <= y; i++) {
-//     isPrime = true;
-//     for (let j = 2; j < i; j++) {
-//       if (i % j == 0) {
-//         isPrime = false;
-//         break;
-//       }
-//     }
-//     if (i > 1 && isPrime) {
-//       return Math.max(i);
-//     }
-//   }
-// }
-// console.log("Cel mai mare numar prim este ", displayMaxPrimeNumber(3, 12))
+function displayMaxPrimeNumber(x, y) {
+  let max = x;
+  for (let i = x; i <= y; i++) {
+    let isPrime = true;
+    for (let j = 2; j < i; j++) {
+      if (i % j == 0) {
+        isPrime = false;
+        break;
+      }
+    }
+    if (i > 1 && isPrime && i > max) {
+      max = i;
+    }
+  }
+  return max;
+}
+console.log("Cel mai mare numar prim este ", displayMaxPrimeNumber(3, 14))
 
 // s. Scrie o functie care returneaza numarul de numere prime din intervalul [x,y]
 function displayContorPrimeNumbers(x, y) {
@@ -251,7 +256,7 @@ function displayContorPrimeNumbers(x, y) {
   }
   return contor;
 }
-console.log("Numerele prime rezultate din intervalul functiei sunt in total ", displayContorPrimeNumbers(3, 11))
+console.log("Numarul numerelor prime este ", displayContorPrimeNumbers(3, 11))
 
 // t. Scrie o functie care returneaza adevarat daca exista cel putin 3 numere in intervalul [x,y] altfel fals,
 function displayBoolean(x, y) {
@@ -268,21 +273,19 @@ console.log(displayBoolean(3, 4));
 console.log(displayBoolean(3, 17));
 
 // u. Scrie o functie care gaseste toate perechile de numere din intervalul x,.y a carei suma este mai mare ca 10
-// function foundSum10(x, y) {
-//   let sum = 10;
-//   let pairs;
-//   for (let i = x; i < y; i++) {
-//     for (let j = i + 1; j < y; j++) {
-//       pairs = i + j;
-//       if (pairs > sum) {
-//         pairs.push(i+j);
-//         console.log(i+ j);
-//       }
-//     }
-//   }
-//   return pairs;
-// }
-// console.log("dddddddddddddd " , foundSum10(3, 8))
+function foundSum10(x, y) {
+  console.log("Perechile a caror suma e mai mare decat 10 sunt: ")
+  let sum = 10;
+  for (let i = x; i <= y; i++) {
+    for (let j = i + 1; j <= y; j++) {
+      if (i + j > sum) {
+        console.log(i + ' si ' + j)
+      }
+    }
+  }
+  return;
+}
+foundSum10(5, 8);
 
 //v.  Scrie o functie care primeste un numar si returneaza numarul de cifre ale numarului (se foloseste while).
 function displayTheNumberOfDigits(num) {
@@ -301,7 +304,7 @@ function displayNumODigits(num) {
 }
 console.log('The number of digits is ', displayNumODigits(2445334));
 
-// x. Scrie o functie care verifica daca un numar este palindrom (se scrie la fel de la stanga la dreapta si de la dreapta la stanga)
+// w. Scrie o functie care verifica daca un numar este palindrom (se scrie la fel de la stanga la dreapta si de la dreapta la stanga)
 // Exemplu: 121 - palindrom, 1221 - palindrom, 123 - nu este palindrom.
 function isPalindrome(num) {
   return num === Number(num.toString().split('').reverse().join(''));
@@ -310,11 +313,11 @@ console.log(isPalindrome(123));
 console.log(isPalindrome(121));
 
 // x. Scrie o functie care schimba literele unui string din litere mari in litere mici si invers.
-function changeUpperLowerCase(word) {
-  console.log(word.toUpperCase())
-  console.log(word.toLowerCase())
+function changeUpperLowerCase(letters) {
+  console.log(letters.toUpperCase())
+  console.log(letters.toLowerCase())
 }
-changeUpperLowerCase("Maria")
+changeUpperLowerCase("Maria este bine");
 
 // y.Scrie o functie care returnewza numarul de vocale dintr-un string
 function computeVowels(word) {
@@ -327,4 +330,4 @@ function computeSpaces(word) {
   console.log("The number of spaces is ", word.split(/[ ]+/).length - 1);
   console.log("The number of commas is ", word.split(/[,]+/).length - 1);
 }
-computeSpaces("Ce faci, Ioana?")
+computeSpaces("Ce faci, Ioana?");
